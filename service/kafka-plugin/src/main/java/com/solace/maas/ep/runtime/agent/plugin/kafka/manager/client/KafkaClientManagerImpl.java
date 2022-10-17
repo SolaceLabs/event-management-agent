@@ -1,5 +1,6 @@
 package com.solace.maas.ep.runtime.agent.plugin.kafka.manager.client;
 
+import com.solace.maas.ep.runtime.agent.plugin.manager.client.MessagingServiceClientManager;
 import com.solace.maas.ep.runtime.agent.plugin.messagingService.event.ConnectionDetailsEvent;
 import lombok.Data;
 import org.apache.kafka.clients.admin.AdminClient;

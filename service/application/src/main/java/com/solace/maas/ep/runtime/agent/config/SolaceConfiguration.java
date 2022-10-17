@@ -17,7 +17,7 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import com.solace.messaging.config.SolaceProperties;
+//import com.solace.messaging.config.SolaceProperties;
 import org.springframework.context.annotation.Scope;
 
 import java.util.ArrayList;
@@ -56,7 +56,7 @@ public class SolaceConfiguration {
     @ConditionalOnProperty(name = "event-portal.gateway.messaging.standalone", havingValue = "false")
     public MessagingService messagingService() {
         String clientName = "runtimeAgent-" + eventPortalProperties.getRuntimeAgentId();
-        vmrConfiguration.setProperty(SolaceProperties.ClientProperties.NAME, clientName);
+//        vmrConfiguration.setProperty(SolaceProperties.ClientProperties.NAME, clientName);
         return MessagingService.builder(ConfigurationProfile.V1)
                 .fromProperties(vmrConfiguration)
                 .build()

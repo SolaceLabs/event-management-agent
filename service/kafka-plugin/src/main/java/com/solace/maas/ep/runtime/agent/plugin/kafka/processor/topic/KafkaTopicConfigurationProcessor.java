@@ -40,35 +40,42 @@ public class KafkaTopicConfigurationProcessor extends ResultProcessorImpl<List<K
     private List<KafkaTopicPartitionEvent> mapPartition(List<TopicPartitionInfo> partitions) {
         return partitions
                 .stream()
-                .map(partition -> KafkaTopicPartitionEvent.builder()
-                        .isr(partition.isr()
-                                .stream().map(isr -> KafkaNodeEvent.builder()
-                                        .id(isr.id())
-                                        .host(isr.host())
-                                        .port(isr.port())
-                                        .rack(isr.rack())
-                                        .build()
-                                )
-                                .sorted(Comparator.comparing(KafkaNodeEvent::getId))
-                                .collect(Collectors.toUnmodifiableList())
-                        ).leader(KafkaNodeEvent.builder()
+                .map(partition -> {
+                    KafkaTopicPartitionEvent partitionEvent = KafkaTopicPartitionEvent.builder()
+                            .isr(partition.isr()
+                                    .stream().map(isr -> KafkaNodeEvent.builder()
+                                            .id(isr.id())
+                                            .host(isr.host())
+                                            .port(isr.port())
+                                            .rack(isr.rack())
+                                            .build()
+                                    )
+                                    .sorted(Comparator.comparing(KafkaNodeEvent::getId))
+                                    .collect(Collectors.toUnmodifiableList())
+                            ).replicas(partition.replicas()
+                                    .stream().map(replicas -> KafkaNodeEvent.builder()
+                                            .id(replicas.id())
+                                            .host(replicas.host())
+                                            .port(replicas.port())
+                                            .rack(replicas.rack())
+                                            .build()
+                                    )
+                                    .sorted(Comparator.comparing(KafkaNodeEvent::getId))
+                                    .collect(Collectors.toUnmodifiableList())
+                            ).partition(partition.partition())
+                            .build();
+
+                    if (Objects.nonNull(partition.leader())) {
+                        partitionEvent.setLeader(KafkaNodeEvent.builder()
                                 .id(partition.leader().id())
                                 .host(partition.leader().host())
                                 .port(partition.leader().port())
                                 .rack(partition.leader().rack())
-                                .build()
-                        ).replicas(partition.replicas()
-                                .stream().map(replicas -> KafkaNodeEvent.builder()
-                                        .id(replicas.id())
-                                        .host(replicas.host())
-                                        .port(replicas.port())
-                                        .rack(replicas.rack())
-                                        .build()
-                                )
-                                .sorted(Comparator.comparing(KafkaNodeEvent::getId))
-                                .collect(Collectors.toUnmodifiableList())
-                        ).partition(partition.partition())
-                        .build())
+                                .build());
+                    }
+
+                    return partitionEvent;
+                })
                 .sorted(Comparator.comparing(KafkaTopicPartitionEvent::getPartition))
                 .collect(Collectors.toUnmodifiableList());
     }
@@ -93,7 +100,7 @@ public class KafkaTopicConfigurationProcessor extends ResultProcessorImpl<List<K
 
         AdminClient adminClient = messagingServiceDelegateService.getMessagingServiceClient(messagingServiceId);
 
-        if(!body.isEmpty()) {
+        if (!body.isEmpty()) {
             List<String> topicNames = body.stream()
                     .map(KafkaTopicEvent::getName)
                     .collect(Collectors.toUnmodifiableList());

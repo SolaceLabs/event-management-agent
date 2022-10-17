@@ -137,6 +137,11 @@
             <artifactId>local-storage-plugin</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.solace.maas.plugin.async.processor</groupId>
+            <artifactId>async-processor-plugin</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 
         <!-- for testing -->
         <dependency>

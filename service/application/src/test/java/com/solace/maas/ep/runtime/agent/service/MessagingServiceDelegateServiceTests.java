@@ -4,7 +4,7 @@ import com.solace.maas.ep.runtime.agent.TestConfig;
 import com.solace.maas.ep.runtime.agent.config.plugin.enumeration.MessagingServiceType;
 import com.solace.maas.ep.runtime.agent.event.MessagingServiceEvent;
 import com.solace.maas.ep.runtime.agent.plugin.config.MessagingServiceTypeConfig;
-import com.solace.maas.ep.runtime.agent.plugin.kafka.manager.client.MessagingServiceClientManager;
+import com.solace.maas.ep.runtime.agent.plugin.manager.client.MessagingServiceClientManager;
 import com.solace.maas.ep.runtime.agent.plugin.messagingService.event.AuthenticationDetailsEvent;
 import com.solace.maas.ep.runtime.agent.plugin.messagingService.event.ConnectionDetailsEvent;
 import com.solace.maas.ep.runtime.agent.repository.messagingservice.MessagingServiceRepository;

@@ -2,7 +2,7 @@ package com.solace.maas.ep.runtime.agent.plugin.rabbitmq.manager.client;
 
 import com.rabbitmq.http.client.Client;
 import com.rabbitmq.http.client.ClientParameters;
-import com.solace.maas.ep.runtime.agent.plugin.kafka.manager.client.MessagingServiceClientManager;
+import com.solace.maas.ep.runtime.agent.plugin.manager.client.MessagingServiceClientManager;
 import com.solace.maas.ep.runtime.agent.plugin.messagingService.event.AuthenticationDetailsEvent;
 import com.solace.maas.ep.runtime.agent.plugin.messagingService.event.ConnectionDetailsEvent;
 import lombok.Data;

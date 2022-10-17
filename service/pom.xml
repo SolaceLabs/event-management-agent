@@ -9,6 +9,8 @@
         <module>kafka-plugin</module>
         <module>solace-plugin</module>
         <module>local-storage-plugin</module>
+        <module>s3-storage-plugin</module>
+        <module>async-processor-plugin</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

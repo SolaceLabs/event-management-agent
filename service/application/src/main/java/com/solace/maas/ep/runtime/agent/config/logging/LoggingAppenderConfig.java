@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.Objects;
+
 @Configuration
 @ExcludeFromJacocoGeneratedReport
 public class LoggingAppenderConfig {
@@ -28,8 +30,10 @@ public class LoggingAppenderConfig {
 
     @Bean
     public StreamingAppender configuredStreamingAppender() {
-        streamingAppender.setProducerTemplate(producerTemplate);
-        streamingAppender.setStandalone(eventPortalProperties.getGateway().getMessaging().isStandalone());
+        if(Objects.nonNull(streamingAppender)) {
+            streamingAppender.setProducerTemplate(producerTemplate);
+            streamingAppender.setStandalone(eventPortalProperties.getGateway().getMessaging().isStandalone());
+        }
 
         return streamingAppender;
     }
