@@ -68,7 +68,7 @@ public class DataAggregationRouteBuilder extends DataPublisherRouteBuilder {
                 .to("seda:scanStatusPublisher")
 
                 .log("Scan request [${header." + RouteConstants.SCAN_ID + "}]: Retrieving [${header." + RouteConstants.SCAN_TYPE
-                        + "}] details from Kafka messaging service [${header." + RouteConstants.MESSAGING_SERVICE_ID + "}].")
+                        + "}] details from messaging service [${header." + RouteConstants.MESSAGING_SERVICE_ID + "}].")
 
                 // Data Collected by the Processor is expected to be an Array. We'll be splitting this Array
                 // and streaming it back to interested parties. Interceptors / Destination routes will need to

@@ -75,7 +75,7 @@ public class DataPublisherRouteBuilder extends RouteBuilder {
                         + RouteConstants.SCAN_TYPE + "}]" + " is: [" + ScanStatus.IN_PROGRESS + "].")
                 .to("seda:scanStatusPublisher")
                 .log("Scan request [${header." + RouteConstants.SCAN_ID + "}]: Retrieving [${header." + RouteConstants.SCAN_TYPE
-                        + "}] details from Kafka messaging service [${header." + RouteConstants.MESSAGING_SERVICE_ID + "}].")
+                        + "}] details from messaging service [${header." + RouteConstants.MESSAGING_SERVICE_ID + "}].")
 
                 // Injecting the Data Collection Processor. This will normally be the processor that
                 // connects to the Messaging Service.
