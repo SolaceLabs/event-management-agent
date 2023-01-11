@@ -18,7 +18,30 @@ public interface EMAController {
             summary = "Triggers data collections",
             description = "Use this API to trigger a data collection for the specified messaging service.",
             parameters = {@Parameter(description = "The ID of the messaging service.", name = "messagingServiceId", required = true)},
-            requestBody = @RequestBody(description = "The scan request object.",
+            requestBody = @RequestBody(description = "The scan request object.\n\n" +
+                    "<b>List of scan types:</b>\n" +
+                    "```\n" +
+                    "SOLACE_ALL\n" +
+                    "SOLACE_QUEUE_CONFIG\n" +
+                    "SOLACE_QUEUE_LISTING\n" +
+                    "SOLACE_SUBSCRIPTION_CONFIG\n" +
+                    "KAFKA_ALL\n" +
+                    "KAFKA_BROKER_CONFIGURATION\n" +
+                    "KAFKA_CLUSTER_CONFIGURATION\n" +
+                    "KAFKA_CONSUMER_GROUPS\n" +
+                    "KAFKA_CONSUMER_GROUPS_CONFIGURATION\n" +
+                    "KAFKA_FEATURES\n" +
+                    "KAFKA_PRODUCERS\n" +
+                    "KAFKA_TOPIC_CONFIGURATION\n" +
+                    "KAFKA_TOPIC_CONFIGURATION_FULL\n" +
+                    "KAFKA_TOPIC_LISTING\n" +
+                    "KAFKA_TOPIC_OVERRIDE_CONFIGURATION\n" +
+                    "```\n" +
+                    "<b>List of destinations:</b>\n" +
+                    "```\n" +
+                    "EVENT_PORTAL\n" +
+                    "FILE_WRITER\n" +
+                    "```\n",
                     content = @Content(schema = @Schema(implementation = ScanRequestDTO.class))),
             responses = {
                     @ApiResponse(
